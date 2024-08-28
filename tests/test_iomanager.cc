@@ -59,9 +59,9 @@ void watch_io_read() {
 }
 
 void test_io() {
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    SYLAR_ASSERT(sockfd > 0);
-    fcntl(sockfd, F_SETFL, O_NONBLOCK);
+    sockfd = socket(AF_INET, SOCK_STREAM, 0); // 创建一个TCP套接字，使用IPV4地址
+    SYLAR_ASSERT(sockfd > 0); //sockfd > 0 表明套接字成功创建
+    fcntl(sockfd, F_SETFL, O_NONBLOCK); //将 socket 设置为非阻塞模式
 
     sockaddr_in servaddr;
     memset(&servaddr, 0, sizeof(servaddr));

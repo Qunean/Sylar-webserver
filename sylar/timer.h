@@ -22,6 +22,7 @@ class TimerManager;
  */
 class Timer : public std::enable_shared_from_this<Timer> {
 friend class TimerManager;
+//这里，Timer 类将 TimerManager 类声明为它的友元（friend）。这意味着 TimerManager 可以访问 Timer 类的所有成员（无论是公开的、保护的还是私有的）。
 public:
     /// 定时器的智能指针类型
     typedef std::shared_ptr<Timer> ptr;
@@ -140,6 +141,8 @@ protected:
 
     /**
      * @brief 当有新的定时器插入到定时器的首部,执行该函数
+     * 这是一个虚函数，由IOManager继承时实现，当新的定时器插入到Timer集合的首部时
+     * TimerManager通过该方法来通知IOManager立刻更新当前的epoll_wait超时
      */
     virtual void onTimerInsertedAtFront() = 0;
 
